@@ -1,0 +1,20 @@
+version: "3"
+
+networks:
+  frontend:
+  backend:
+
+services:
+  app:
+    ports:
+      - "3000:80"
+    networks:
+      - frontend
+  master:
+    networks:
+      - frontend
+      - backend
+
+  slave:
+    networks:
+      - backend
