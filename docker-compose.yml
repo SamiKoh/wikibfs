@@ -1,20 +1,52 @@
 version: "3"
 
-networks:
-  frontend:
-  backend:
+#networks:
+#  frontend:
+#  backend:
 
 services:
-  app:
+  #  app:
+  #    ports:
+  #      - "3000:80"
+  #    networks:
+  #      - frontend
+  #  master:
+  #    networks:
+  #      - frontend
+  #      - backend
+  #
+  slave_1: &slave
+    image: python:3
+    build: ./slaves
     ports:
-      - "3000:80"
-    networks:
-      - frontend
-  master:
-    networks:
-      - frontend
-      - backend
-
-  slave:
-    networks:
-      - backend
+      - "3001:8080"
+  slave_2:
+    <<: *slave
+    ports:
+      - "3002:8080"
+  slave_3:
+    <<: *slave
+    ports:
+      - "3003:8080"
+  slave_4:
+    <<: *slave
+    ports:
+      - "3004:8080"
+  slave_5:
+    <<: *slave
+    ports:
+      - "3005:8080"
+  slave_6:
+    <<: *slave
+    ports:
+      - "3006:8080"
+  slave_7:
+    <<: *slave
+    ports:
+      - "3007:8080"
+  slave_8:
+    <<: *slave
+    ports:
+      - "3008:8080"
+  #  networks:
+  #    - backend
