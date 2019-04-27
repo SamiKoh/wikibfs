@@ -87,4 +87,11 @@ form {
   background-color: #fff !important;
   border-right-color: #fff !important;
 }
+
+input,
+select,
+label,
+button {
+  border-radius: 20px;
+}
 </style>
