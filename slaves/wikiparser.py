@@ -1,11 +1,18 @@
+import aiohttp
 import asyncio
 import json
 import re
 import urllib
 
-import requests
 from bs4 import BeautifulSoup
 from japronto import Application
+
+
+async def getPage(path):
+    async with aiohttp.ClientSession() as session:
+        async with session.get(path) as response:
+            return await response.text()
+
 
 async def getLinks(request):
     try:
@@ -14,8 +21,8 @@ async def getLinks(request):
     except AttributeError:
         return request.Response(text="Attribute error")
     wikipath = 'https://' + wiki + '.wikipedia.org/wiki/'
-    page = requests.get(wikipath + url)    
-    soup = BeautifulSoup(page.text, features="html.parser")
+    page = await getPage(wikipath + url)    
+    soup = BeautifulSoup(page, features="html.parser")
     
     links = []
     
@@ -29,7 +36,7 @@ async def getLinks(request):
         except TypeError:
             pass
 
-    obj = {'links': links}
+    obj = {'links': list(set(links))}
     
     return request.Response(json=obj)
 
