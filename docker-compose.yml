@@ -10,13 +10,16 @@ services:
   #      - "3000:80"
   #    networks:
   #      - frontend
-  #  master:
-  #    networks:
-  #      - frontend
-  #      - backend
-  #
-  slave_1: &slave
-    image: python:3
+  master:
+    ports:
+      - "3000:8080"
+    build: ./master
+#    networks:
+#      - frontend
+#      - backend
+  slave_1: 
+    <<: &slave
+      image: myimage:latest
     build: ./slaves
     ports:
       - "3001:8080"

@@ -30,7 +30,7 @@ async def getLinks(request):
         l = link.get('href')
         try:    
             if re.match(r'^\/wiki\/[A-z()%0-9.-]*$',l):
-                links.append(l.replace('/wiki/', ''))
+                links.append(l.replace('/wiki/', '').lower())
         except AttributeError:
             pass
         except TypeError:

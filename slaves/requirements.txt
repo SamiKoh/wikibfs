@@ -1,4 +1,2 @@
 japronto
-asyncio
-bs4
-aiohttp
+beautifulsoup4
