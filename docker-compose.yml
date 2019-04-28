@@ -10,10 +10,10 @@ services:
   #      - "3000:80"
   #    networks:
   #      - frontend
-  master:
-    ports:
-      - "3000:8080"
-    build: ./master
+ # master:
+ #   ports:
+ #     - "3000:8080"
+ #   build: ./master
 #    networks:
 #      - frontend
 #      - backend

@@ -3,7 +3,8 @@ import random
 import time
 import urllib
 from functools import partial
-from japronto import Application
+#from japronto import Application
+from multiprocessing import Manager
 from multiprocessing.pool import Pool
 import requests
 
@@ -38,7 +39,7 @@ def getLinks(page, paths, end, lang):
  
 def shortest_path(start, end, lang):
     end = urllib.parse.quote(end)
-    paths = {}
+    paths = Manager().dict()
     paths[start] = [start]
     Q = [start]
     cont = True
@@ -68,6 +69,8 @@ def shortest_path(start, end, lang):
     return results
 
 
+""" 
+
 def main(request):
     try:
         lang = request.query["lang"]
@@ -83,9 +86,13 @@ def main(request):
         return request.Response(json=obj)
     except AttributeError:
         return request.Response(text="Attribute error")
-
+ """
 if __name__ == "__main__":
-    app = Application()
-    app.router.add_route('/main', main)
-    print("starting master...")
-    app.run(debug=True)
+    start = time.time()
+    results = shortest_path("cat", "australia", "en")
+    print("\nIt took %d seconds."%(time.time() - start))
+    
+    #app = Application()
+    #app.router.add_route('/main', main)
+    #print("starting master...")
+    #app.run(debug=True)
