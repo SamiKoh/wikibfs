@@ -19,7 +19,7 @@ services:
 #      - backend
   slave_1: 
     <<: &slave
-      image: myimage:latest
+      image: myworker:latest
     build: ./slaves
     ports:
       - "3001:8080"
