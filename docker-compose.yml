@@ -1,22 +1,15 @@
 version: "3"
 
-#networks:
-#  frontend:
-#  backend:
-
 services:
-  #  app:
-  #    ports:
-  #      - "3000:80"
-  #    networks:
-  #      - frontend
- # master:
- #   ports:
- #     - "3000:8080"
- #   build: ./master
-#    networks:
-#      - frontend
-#      - backend
+  app:
+    ports:
+     - "8080:80"
+    build: ./frontend
+# master:
+#   ports:
+#     - "3000:8080"
+#   build: ./master
+
   slave_1: 
     <<: &slave
       image: myworker:latest
